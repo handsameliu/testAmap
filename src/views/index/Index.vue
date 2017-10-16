@@ -86,6 +86,7 @@
                     pName:'Driving',
                     events:{
                         init(o){
+                            // 导航，报错 INVALID_USER_DOMAIN 需要有域名白名单
                             // console.log(o);
                             // o.search([{keyword:'方恒国际',city:'北京'},{keyword:'壶口瀑布'}], function(status, result){
                             //     console.log(result);
