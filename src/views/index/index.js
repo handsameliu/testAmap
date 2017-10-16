@@ -15,13 +15,12 @@ Vue.use(VueAMap);
 
 // Vue.prototype.VueAMap = VueAMap;
 
-
 // 初始化vue-amap
 VueAMap.initAMapApiLoader({
     // 申请的高德key
     key: 'cff82cd9f15d3a4cbd0e1d948f02a2da',
     // 插件集合
-    plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor']
+    plugin: ['AMap.Geolocation','AMap.Driving','AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor']
     
 });
 
@@ -30,6 +29,19 @@ VueAMap.initAMapApiLoader({
 //   this.map = new AMap.Map('amapContainer', {
 //     center: new AMap.LngLat(121.59996, 31.197646)
 //   });
+// });
+
+// cdn 方式
+// window.VueAMap.initAMapApiLoader({
+//     key: 'cff82cd9f15d3a4cbd0e1d948f02a2da',
+//     plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor']
+// });
+
+// window.VueAMap.lazyAMapApiLoaderInstance.load().then(() => {
+//     // your code ...
+//     this.map = new AMap.Map('amapContainer', {
+//         center: new AMap.LngLat(121.59996, 31.197646)
+//     });
 // });
 
 const FastClick = require('fastclick');
