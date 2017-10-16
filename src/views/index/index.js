@@ -13,15 +13,17 @@ import VueAMap from 'vue-amap';
 
 Vue.use(VueAMap);
 
+// Vue.prototype.VueAMap = VueAMap;
+
+
 // 初始化vue-amap
 VueAMap.initAMapApiLoader({
-  // 申请的高德key
-  key: 'cff82cd9f15d3a4cbd0e1d948f02a2da',
-  // 插件集合
-  plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor']
-  
+    // 申请的高德key
+    key: 'cff82cd9f15d3a4cbd0e1d948f02a2da',
+    // 插件集合
+    plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor']
+    
 });
-
 
 // lazyAMapApiLoaderInstance.load().then(() => {
 //   // your code ...
@@ -34,7 +36,7 @@ const FastClick = require('fastclick');
 FastClick.attach(document.body);
 
 new Vue({
-  el: '#app',
-  template: '<App/>',
-  components: { App }
+    el: '#app',
+    template: '<App/>',
+    components: { App }
 })
