@@ -1,6 +1,8 @@
 <template>
     <div class="amap-page-container">
+        <el-amap-search-box class="search-box" :search-option="searchOption" :on-search-result="onSearchResult"></el-amap-search-box>
         <el-amap ref="map" vid="amapDemo" :amap-manager="amapManager" :center="center" :zoom="zoom" :plugin="plugin" :events="events" class="amap-demo">
+            <el-amap-marker v-for="(marker,key) in markers" :position="marker" :key="key"></el-amap-marker>
         </el-amap>
         <div class="toolbar">
             <button @click="getMap()">get map</button>
@@ -16,10 +18,17 @@
 
 <style>
     .amap-page-container {
+        position: relative;
         height: 500px;
         width: 100%;
         font-size:12px;
     }
+    .search-box {
+        position: absolute;
+        top: 50px;
+        left: 70px;
+    }
+
 </style>
 
 <script>
@@ -56,6 +65,11 @@
                     'click': (e) => {
                         alert('map clicked');
                     }
+                },
+                markers: [],
+                searchOption: {
+                    city: '北京',
+                    citylimit: true
                 },
                 plugin: ['ToolBar', {
                     pName: 'MapType',
@@ -124,6 +138,29 @@
                 console.log(this.amapManager._componentMap);
                 // gaode map instance
                 console.log(this.amapManager._map);
+            },
+            addMarker: function() {
+                let lng = 121.5 + Math.round(Math.random() * 1000) / 10000;
+                let lat = 31.197646 + Math.round(Math.random() * 500) / 10000;
+                this.markers.push([lng, lat]);
+            },
+            onSearchResult(pois) {
+                // 搜索，也是 INVALID_USER_DOMAIN 域名有误，无法看到结果
+                let latSum = 0;
+                let lngSum = 0;
+                if (pois.length > 0) {
+                    pois.forEach(poi => {
+                        let {lng, lat} = poi;
+                        lngSum += lng;
+                        latSum += lat;
+                        this.markers.push([poi.lng, poi.lat]);
+                    });
+                    let center = {
+                        lng: lngSum / pois.length,
+                        lat: latSum / pois.length
+                    };
+                    this.mapCenter = [center.lng, center.lat];
+                }
             }
         }
     };
